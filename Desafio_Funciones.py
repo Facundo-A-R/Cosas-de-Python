@@ -57,26 +57,33 @@ mostrar_mapa(mapa)
 
 print("\n")
 
-# Posición inicial del jugador
-pos_jugador = (0, 0)
-# Mover al jugador
-nueva_pos = (1, 3)
-pos_jugador = mover_jugador(mapa, pos_jugador, nueva_pos)
 
-mostrar_mapa(mapa)
-
-pos_jugador = nueva_pos  # Actualizar la posición del jugador después de moverlo
-
-# Pisar enemigo
-if pisar_enemigo(mapa, pos_jugador):
-    mostrar_mapa(mapa)
-    print("¡Has perdido!")
+# Nueva posición del jugador
+nueva_pos = int(input("Ingrese la fila inicial del jugador (0-4): ")), int(input("Ingrese la columna inicial del jugador (0-4): "))
+# pos_jugador = (0, 0)  # Posición inicial del jugador
 
 print("\n")
 
-# Detectar meta
-if detectar_meta(mapa, pos_jugador):
-    print("¡Has ganado!")
+if (0 <= nueva_pos[0] < 5) and (0 <= nueva_pos[1] < 5):
+    # print(f"Posición inicial del jugador: {nueva_pos}\n")
+    pos_jugador = nueva_pos
+
+    mover_jugador(mapa, pos_jugador, nueva_pos)
+
+    # Pisar enemigo
+    if pisar_enemigo(mapa, pos_jugador):
+        mostrar_mapa(mapa)
+        print("¡Has perdido!")
+
+    # Detectar meta
+    if detectar_meta(mapa, pos_jugador):
+        print("¡Has ganado!")
+        mostrar_mapa(mapa)
+    
+    mostrar_mapa(mapa)
+
+else:
+    print("Posición inicial del jugador fuera de límites.")
     mostrar_mapa(mapa)
 
 
